@@ -3,6 +3,7 @@ import feedparser                                                               
 
 class color:                                                                                          #These make things pretty
 	YELLOW = '\033[93m'
+	RED = '\033[91m'
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 	END = '\033[0m'
@@ -39,7 +40,6 @@ with file as feedsFile:
 			if videoURL not in historyList:                                               #Check to see if the video link is in the historyList
 				print color.BOLD + parsedfeed.entries[i].title + color.END            #Print the name of the video
 				print color.UNDERLINE + parsedfeed.entries[i].link + color.END        #Print the link to the video
-#				print "VIDEO NOT FOUND IN HISTORY\n\n\n"
 			i += 1
 		print ""                                                                              #Put a newline between channels so that the link to Garcatch's latest video doesn't touch ViHart's name
 file.close()                                                                                          #Close the feeds file so that we can open history back up. 
@@ -53,3 +53,6 @@ with file as historyFile:
 			historyFile.write(newHistory[m])                                              #Write that element to history.txt
 			historyFile.write("\n")                                                       #Put a newline so that they can be read by historyList next time
 file.close()                                                                                          #Close the file
+
+print color.RED + "THANK YOU FOR USING ROMEO'S DOPE YOUTUBE PROJECT!"
+print "==IT WAS MADE WITH HELP FROM ~GAMAH AND MITFREE==" + color.END
