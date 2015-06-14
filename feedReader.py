@@ -35,11 +35,12 @@ with file as f:
 			x = 0
 			#for n in range(x, len(historyList)):#For each element in historyList
 			while x < len(historyList):
-				if parsedfeed.entries[i].link != historyList[x]:#Check to see if the video link is in the historyList
-					print color.BOLD + parsedfeed.entries[i].title + color.END#Print the name of the video
-					print color.UNDERLINE + parsedfeed.entries[i].link + color.END#Print the link to the video
-					newHistory+=[parsedfeed.entries[i].link]#Add the video's link to the list that will be written to history.txt later
-					x+=1
+				for chk in range(0,len(historyList)):
+					if parsedfeed.entries[i].link != historyList[chk]:#Check to see if the video link is in the historyList
+						print color.BOLD + parsedfeed.entries[i].title + color.END#Print the name of the video
+						print color.UNDERLINE + parsedfeed.entries[i].link + color.END#Print the link to the video
+						newHistory+=[parsedfeed.entries[i].link]#Add the video's link to the list that will be written to history.txt later
+				x+=1
 				else:
 					x = len(historyList)
 			i+=1
