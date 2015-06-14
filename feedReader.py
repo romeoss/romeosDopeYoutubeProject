@@ -1,3 +1,4 @@
+#! /usr/bin/env python2
 import feedparser                                                                                     #This will make life easier
 
 class color:                                                                                          #These make things pretty
@@ -18,7 +19,7 @@ newHistory = []
 with file as g:
 	for line in g:
 		url = line
-		historyList+=[url]                                                                    #Take each line from history.txt and write it to an element in historyList
+		historyList += [url]                                                                    #Take each line from history.txt and write it to an element in historyList
 file.close()                                                                                          #Close the file so that we can open the next one
 
 
@@ -38,12 +39,12 @@ with file as f:
 			print newHistory
 			videoURL = parsedfeed.entries[i].link + "\\n"                                 #We need to do this b/c historyList loads the newline characters and we want to match to that. Alternative solution: Remove the newline character from each entry in historyList
 			print videoURL
-			newHistory+=[parsedfeed.entries[i].link]
+			newHistory += [parsedfeed.entries[i].link]
 			if videoURL not in historyList:                                               #Check to see if the video link is in the historyList
 #				print color.BOLD + parsedfeed.entries[i].title + color.END            #Print the name of the video
 #				print color.UNDERLINE + parsedfeed.entries[i].link + color.END        #Print the link to the video
 				print "VIDEO NOT FOUND IN HISTORY\n\n\n"
-			i+=1
+			i += 1
 		print ""                                                                              #Put a newline between channels so that the link to Garcatch's latest video doesn't touch ViHart's name
 file.close()                                                                                          #Close the feeds file so that we can open history back up. 
 
