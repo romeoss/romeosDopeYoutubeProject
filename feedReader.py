@@ -19,7 +19,7 @@ newHistory = []
 with file as historyFile:
 	for line in historyFile:
 		url = line
-		historyList += [url]                                                                    #Take each line from history.txt and write it to an element in historyList
+		historyList += [url]                                                                  #Take each line from history.txt and write it to an element in historyList
 file.close()                                                                                          #Close the file so that we can open the next one
 
 
@@ -53,7 +53,7 @@ file.close()                                                                    
 file = open(history, 'a')                                                                             #Open history in writable mode so that we can add to it. 
 with file as historyFile:
 	for m in range(0, len(newHistory)):                                                           #For each element in newHistory
-		historyFile.write(newHistory[m])                                                                #Write that element to history.txt
-		historyFile.write("\n")                                                                         #Put a newline so that they can be read by historyList next time
+		historyFile.write(newHistory[m])                                                      #Write that element to history.txt
+		historyFile.write("\n")                                                               #Put a newline so that they can be read by historyList next time
 ##TODO: DON'T ADD THE URL TO HISTORY IF IT'S ALREADY IN THERE
 file.close()                                                                                          #Close the file
