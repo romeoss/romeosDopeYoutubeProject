@@ -31,26 +31,31 @@ with file as f:
 		url = line#Each line is a url that we will process
 		parsedfeed = feedparser.parse(url)#Actually getting the RSS feed itself using the URL
 		print color.YELLOW + color.BOLD + parsedfeed.channel.title + color.END#Displaying the channel name in a pretty way.
-		while i <= posts:
-			x = 0
-			#for n in range(x, len(historyList)):#For each element in historyList
-			while x < len(historyList):
-			if parsedfeed.entries[i].link in historyList:#Check to see if the video link is in the historyList
+		while i < posts:
+			#print newHistory
+			#print historyList
+			videoTitle = parsedfeed.entries[i].link + "\\n"
+			if videoTitle not in historyList:#Check to see if the video link is in the historyList
 				print color.BOLD + parsedfeed.entries[i].title + color.END#Print the name of the video
 				print color.UNDERLINE + parsedfeed.entries[i].link + color.END#Print the link to the video
+				#print "VIDEO NOT FOUND IN HISTORY"
 				newHistory+=[parsedfeed.entries[i].link]#Add the video's link to the list that will be written to history.txt later
-			x+=1
+				i+=1
+				#print i
 			else:
-					x = len(historyList)
-			i+=1
+				i = posts
+				#print i
+				#print "VIDEO FOUND IN HISTORY"
+
 		print ""#Put a newline between channels so that the link to Garcatch's latest video doesn't touch ViHart's name
 file.close()#Close the feeds file so that we can open history back up. 
 
 
 ##THIS IS THE PART WHERE SHIT GETS ADDED TO history.txt
-file = open(history, 'w')#Open history in writable mode so that we can add to it. 
+file = open(history, 'a')#Open history in writable mode so that we can add to it. 
 with file as h:
 	for m in range(0, len(newHistory)):#For each element in newHistory
-		h.write("\n")#Put a newline so that they can be read by historyList next time
 		h.write(newHistory[m])#Write that element to history.txt
+		h.write("\n")#Put a newline so that they can be read by historyList next time
+##TODO: DON'T ADD THE URL TO HISTORY IF IT'S ALREADY IN THERE
 file.close()#Close history.txt like a good Python skiddie
