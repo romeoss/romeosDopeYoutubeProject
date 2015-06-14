@@ -1,11 +1,23 @@
 #! /usr/bin/env python2
 import feedparser                                                                                     #This will make life easier
 
+def whatisthis(s):
+    if isinstance(s, str):
+        print "ordinary string"
+    elif isinstance(s, unicode):
+        print "unicode string"
+    else:
+        print "not a string"
+
+
 class color:                                                                                          #These make things pretty
 	YELLOW = '\033[93m'
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 	END = '\033[0m'
+
+
+
 
 posts = 5                                                                                             #Maximum number of recent videos that will be read
 feeds = "feeds.txt"                                                                                   #Example: https://www.youtube.com/feeds/videos.xml?channel_id=UC_ZSVTRRC5p3ed6hu8Y8z7A
@@ -32,23 +44,27 @@ with file as feedsFile:
 		parsedfeed = feedparser.parse(url)                                                    #Actually getting the RSS feed itself using the URL
 		print color.YELLOW + color.BOLD + parsedfeed.channel.title + color.END                #Displaying the channel name in a pretty way.
 		while i < posts:
-			print "VIDEO LINK: " + parsedfeed.entries[i].link
 			print "CONTENTS OF historyList: ",
 			print historyList
-			print "CONTENTS OF newHistory: ",
-			print newHistory
+			#print "CONTENTS OF newHistory: ",
+			#print newHistory
 			videoURL = parsedfeed.entries[i].link + "\\n"                                 #We need to do this b/c historyList loads the newline characters and we want to match to that. Alternative solution: Remove the newline character from each entry in historyList
-			print videoURL
+			videoURL = videoURL.encode('ascii', 'ignore')
+			print "VIDEO URL: " + videoURL
+			whatisthis(videoURL)
+			whatisthis(historyList[1])
 			newHistory += [parsedfeed.entries[i].link]
-			if videoURL not in historyList:                                               #Check to see if the video link is in the historyList
+			if videoURL in historyList:                                                   #Check to see if the video link is in the historyList
 #				print color.BOLD + parsedfeed.entries[i].title + color.END            #Print the name of the video
 #				print color.UNDERLINE + parsedfeed.entries[i].link + color.END        #Print the link to the video
+				print "VIDEO FOUND IN HISTORY\n\n\n"
+			else:
 				print "VIDEO NOT FOUND IN HISTORY\n\n\n"
 			i += 1
 		print ""                                                                              #Put a newline between channels so that the link to Garcatch's latest video doesn't touch ViHart's name
 file.close()                                                                                          #Close the feeds file so that we can open history back up. 
 
-
+'''
 ##THIS IS THE PART WHERE SHIT GETS ADDED TO history.txt
 file = open(history, 'a')                                                                             #Open history in writable mode so that we can add to it. 
 with file as historyFile:
@@ -57,3 +73,4 @@ with file as historyFile:
 		historyFile.write("\n")                                                               #Put a newline so that they can be read by historyList next time
 ##TODO: DON'T ADD THE URL TO HISTORY IF IT'S ALREADY IN THERE
 file.close()                                                                                          #Close the file
+'''
