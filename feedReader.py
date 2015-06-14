@@ -16,8 +16,8 @@ history = "history.txt"                                                         
 file = open(history)                                                                                  #Opening this so that we can read the history
 historyList = []                                                                                      #Creating lists needed to document history
 newHistory = []
-with file as g:
-	for line in g:
+with file as historyFile:
+	for line in historyFile:
 		url = line
 		historyList += [url]                                                                    #Take each line from history.txt and write it to an element in historyList
 file.close()                                                                                          #Close the file so that we can open the next one
@@ -25,8 +25,8 @@ file.close()                                                                    
 
 ##THIS IS THE PART WHERE THE SHIT IS PRINTED
 file = open(feeds)                                                                                    #Open the feeds.txt so that we can go through it and get each channel's feed
-with file as f:
-	for line in f:
+with file as feedsFile:
+	for line in feedsFile:
 		i = 0
 		url = line                                                                            #Each line is a url that we will process
 		parsedfeed = feedparser.parse(url)                                                    #Actually getting the RSS feed itself using the URL
@@ -51,9 +51,9 @@ file.close()                                                                    
 
 ##THIS IS THE PART WHERE SHIT GETS ADDED TO history.txt
 file = open(history, 'a')                                                                             #Open history in writable mode so that we can add to it. 
-with file as h:
+with file as historyFile:
 	for m in range(0, len(newHistory)):                                                           #For each element in newHistory
-		h.write(newHistory[m])                                                                #Write that element to history.txt
-		h.write("\n")                                                                         #Put a newline so that they can be read by historyList next time
+		historyFile.write(newHistory[m])                                                                #Write that element to history.txt
+		historyFile.write("\n")                                                                         #Put a newline so that they can be read by historyList next time
 ##TODO: DON'T ADD THE URL TO HISTORY IF IT'S ALREADY IN THERE
 file.close()                                                                                          #Close the file
