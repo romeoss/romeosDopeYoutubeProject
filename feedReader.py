@@ -61,9 +61,8 @@ with file as historyFile:
 	for m in range(0, len(newHistory)):                                                           #For each element in newHistory
 		videoURL = newHistory[m] + "\n"
 		if videoURL not in historyList:
-			#historyFile.write(newHistory[m])                                              #Write that element to history.txt
-			#historyFile.write("\n")                                                       #Put a newline so that they can be read by historyList next time
-			print("VIDEO WRITTEN TO HISTORY")
+			historyFile.write(newHistory[m])                                              #Write that element to history.txt
+			historyFile.write("\n")                                                       #Put a newline so that they can be read by historyList next time
 file.close()                                                                                          #Close the file
 
 print(color.RED + "THANK YOU FOR USING ROMEO'S DOPE YOUTUBE PROJECT!")
