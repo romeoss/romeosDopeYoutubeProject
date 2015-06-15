@@ -39,15 +39,15 @@ with file as feedsFile:
 			print(historyList),
 			#print(newHistory)
 			newHistory += [parsedfeed.entries[i].link]
-			print(isinstance(videoURL, str))
-			print(isinstance(historyList[1], str))
+			#print(isinstance(videoURL, str))
+			#print(isinstance(historyList[1], str))
 			if videoURL not in historyList:                                               #Check to see if the video link is in the historyList
 #				print(color.BOLD + parsedfeed.entries[i].title + color.END)           #Print the name of the video
 #				print(color.UNDERLINE + parsedfeed.entries[i].link + color.END)       #Print the link to the video
 				atLeastOneVideo = "yeah"
 				print("not in list")
-			if videoURL == historyList[1]:
-				print("HEY LOOK AT THIS BRAH LASDFLASDLKFASDKFKASDFKASDFHKLASDHFKLASDHKLHF?")
+			#if videoURL == historyList[1]:
+			#	print("HEY LOOK AT THIS BRAH LASDFLASDLKFASDKFKASDFKASDFHKLASDHFKLASDHKLHF?")
 			i += 1
 #		if atLeastOneVideo == "nope":
 #			print(color.BLUE + "No new videos from " + parsedfeed.channel.title + " :'(" + color.END)
